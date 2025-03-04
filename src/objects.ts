@@ -45,7 +45,7 @@ export function isValid(question: Question, answer: string): boolean {
     if (question.type === "short_answer_question") {
         return true;
     }
-    return question.options.some((element: string) => element === answer);
+    return question.options.some((element: string): boolean => element === answer);
 }
 
 /**
@@ -81,7 +81,7 @@ export function toMarkdown(question: Question): string {
     } else {
         let finalString = `# ${question.name}\n${question.body}\n`;
         finalString += question.options
-            .map((option: string) => `- ${option}`)
+            .map((option: string): string => `- ${option}`)
             .join("\n");
         return finalString;
     }
@@ -92,7 +92,6 @@ export function toMarkdown(question: Question): string {
  * `newName`.
  */
 export function renameQuestion(question: Question, newName: string): Question {
-    //let newQuestion = {...question, name: newName}
     return { ...question, name: newName };
 }
 
